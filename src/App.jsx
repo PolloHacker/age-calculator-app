@@ -18,15 +18,20 @@ function App() {
     const birth = new Date(year, month-1, day);
     
     // ERROR HANDLING
+    let flag = true;
     const lastDayOfMonth = new Date(birth.getFullYear(), birth.getMonth(), 0).getDate();
 
-    if(birth.getFullYear() < 1 || birth.getFullYear() > today.getFullYear()) {
+    if(year < 1 || year > today.getFullYear()) {
+      flag = false;
+    } 
+    if(month < 1 || month > 12) {
+      flag = false;
+    }
+    if(day < 1 || day > lastDayOfMonth) {
+      flag = false;
+    } 
 
-    } else if(birth.getMonth() < 1 || birth.getMonth() > 12) {
-      
-    } else if(birth.getDate() < 1 || birth.getDate() > lastDayOfMonth) {
- 
-    } else {
+    if(flag) {
       let y = today.getFullYear() - birth.getFullYear();
       let m = today.getMonth() - birth.getMonth();
       let d = today.getDate() - birth.getDate();
