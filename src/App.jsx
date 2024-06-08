@@ -2,14 +2,63 @@ import './App.css'
 import CalcButton from './components/button'
 import Form from './components/form'
 import DisplayResult from './components/result'
+import { useState } from 'react'
 
 function App() {
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
+  
+  const [years, setYears] = useState('--');
+  const [months, setMonths] = useState('--');
+  const [days, setDays] = useState('--');
+
+  function handleDateChange()  {
+    const today = new Date();
+    const birth = new Date(year, month-1, day);
+    
+    // ERROR HANDLING
+    const lastDayOfMonth = new Date(birth.getFullYear(), birth.getMonth(), 0).getDate();
+
+    if(birth.getFullYear() < 1 || birth.getFullYear() > today.getFullYear()) {
+
+    } else if(birth.getMonth() < 1 || birth.getMonth() > 12) {
+      
+    } else if(birth.getDate() < 1 || birth.getDate() > lastDayOfMonth) {
+ 
+    } else {
+      let y = today.getFullYear() - birth.getFullYear();
+      let m = today.getMonth() - birth.getMonth();
+      let d = today.getDate() - birth.getDate();
+      
+      if(d < 0) {
+        m -= 1;
+        d += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+      }
+      
+      if(m < 0) {
+        y -= 1;
+        m += 12;
+      }
+      
+      
+      setYears(y);
+      setMonths(m);
+      setDays(d);
+
+      return;
+    }
+
+    setYears('--');
+    setMonths('--');
+    setDays('--');
+  }
 
   return (
     <div className="App">
-      <Form />
-      <CalcButton />
-      <DisplayResult />
+      <Form setYear={setYear} setMonth={setMonth} setDay={setDay}/>
+      <CalcButton handleDateChange={handleDateChange}/>
+      <DisplayResult years={years} months={months} days={days}/>
     </div>
   )
 }
