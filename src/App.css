@@ -113,7 +113,7 @@ button {
 }
 
 button:hover {
-  background-color: hsl(259, 100%, 60%);
+  background-color: black;
 }
 
 button:active {
