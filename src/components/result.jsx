@@ -2,10 +2,27 @@ import PropTypes from 'prop-types';
 
 export default function DisplayResult({years, months, days}) {
   return (
-    <div>
-        <span className='display-years'>{years} years</span>
-        <span className='display-months'>{months} months</span>
-        <span className='display-days'>{days} days</span>
+    <div className='result'>
+        <span className='display-years'>
+          <span className='result-display'>
+          {years} 
+          </span>
+          years</span>
+
+        <span className='display-months'>
+        <span className='result-display'>
+          {months} 
+          </span>
+          <span className='result-name'>
+          months
+          </span>
+          </span>
+
+        <span className='display-days'>
+        <span className='result-display'>
+          {days} 
+          </span>
+          days</span>
     </div>
   )
 }
